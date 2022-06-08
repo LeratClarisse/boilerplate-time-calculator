@@ -11,17 +11,22 @@ def add_time(start, duration, first_day = ""):
   hours += int(duration.split(":")[0])
   minutes += int(duration.split(":")[1])
 
-  #Check if day change
+  #Check if hours change with minutes
+  hours += minutes // 60
+  minutes = minutes % 60
+  
+  #Check if days change with hours
   nb_days = hours // 24
   hours = hours % 24
   
   #Check if AM/PM change
-  if hours > 12:
+  if hours >= 12:
     if am_pm == "AM":
       am_pm = "PM"
     else:
       am_pm = "AM"
       nb_days += 1
+  if hours > 12:
     hours -= 12
 
   
